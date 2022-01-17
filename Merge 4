@@ -1,19 +1,24 @@
 library(Seurat)
-
-##loading in individual samples
-
 cbmc.236.data <- Read10X(data.dir = "C:/Users/gabri/Desktop/CITE-seq data/skin 236")
-cbmc.236 <- CreateSeuratObject(counts = cbmc.236.data$'Antibody Capture', project = "CBMC236")
+rownames(x = cbmc.data[["Antibody Capture"]]) <- gsub(pattern = "_[control-_]*TotalSeqB", replacement = "",
+                                                      x = rownames(x = cbmc.data[["Antibody Capture"]]))
+cbmc.236 <- CreateSeuratObject(counts = cbmc.236.data[["Gene Expression"]], min.cells = 3, min.features = 200, project = "CBMC236")
 
 cbmc.239.data <- Read10X(data.dir = "C:/Users/gabri/Desktop/CITE-seq data/skin 239")
-cbmc.239 <- CreateSeuratObject(counts = cbmc.239.data$'Antibody Capture', project = "CBMC239")
+rownames(x = cbmc.data[["Antibody Capture"]]) <- gsub(pattern = "_[control-_]*TotalSeqB", replacement = "",
+                                                      x = rownames(x = cbmc.data[["Antibody Capture"]]))
+cbmc.239 <- CreateSeuratObject(counts = cbmc.239.data[["Gene Expression"]], min.cells = 3, min.features = 200, project = "CBMC239")
 
 cbmc.246.data <- Read10X(data.dir = "C:/Users/gabri/Desktop/CITE-seq data/skin 246")
-cbmc.246 <- CreateSeuratObject(counts = cbmc.246.data$'Antibody Capture', project = "CBMC246")
+rownames(x = cbmc.data[["Antibody Capture"]]) <- gsub(pattern = "_[control-_]*TotalSeqB", replacement = "",
+                                                      x = rownames(x = cbmc.data[["Antibody Capture"]]))
+cbmc.246 <- CreateSeuratObject(counts = cbmc.246.data[["Gene Expression"]], min.cells = 3, min.features = 200, project = "CBMC246")
 
 cbmc.252.data <- Read10X(data.dir = "C:/Users/gabri/Desktop/CITE-seq data/skin 252")
-cbmc.252 <- CreateSeuratObject(counts = cbmc.252.data$'Antibody Capture', project = "CBMC252")
+rownames(x = cbmc.data[["Antibody Capture"]]) <- gsub(pattern = "_[control-_]*TotalSeqB", replacement = "",
+                                                      x = rownames(x = cbmc.data[["Antibody Capture"]]))
+cbmc.252 <- CreateSeuratObject(counts = cbmc.252.data[["Gene Expression"]], min.cells = 3, min.features = 200, project = "CBMC252")
 
-##combining samples to one dataset
+
 cbmc.combined <- merge(cbmc.236, y = c(cbmc.239, cbmc.246, cbmc.252), add.cell.ids = c("236", "239", "246", "252"), project = "cbmcCOMBINED")
 cbmc.combined
